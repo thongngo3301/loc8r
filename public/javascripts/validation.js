@@ -7,6 +7,7 @@ $(document).ready(function () {
 			}else{
 				$(this).prepend('<div role="alert" class="alert alert-danger">All fields required, please try again</div>')
 			}
+			return false;
 		}
 	})
 })
