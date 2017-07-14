@@ -3,7 +3,7 @@ var apiOptions ={
     server: 'http://localhost:5000'
 };
 if(process.env.NODE_ENV === 'production'){
-    apiOptions.server = 'https://salty-anchorage-74282.herokuapp.com';
+    apiOptions.server = 'https://loc8rr.herokuapp.com';
 };
 
 var getLocationInfo = function(req,res,callback){
