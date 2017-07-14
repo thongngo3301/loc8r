@@ -2,9 +2,9 @@ var mongoose = require('mongoose');
 //mongoose.Promise = global.Promise;
 //var dbURI = 'mongodb://localhost:27017/Loc8r';
 var dbURI = 'mongodb://thongngo3301:14789632@ds155132.mlab.com:55132/loc8r_data';
-if(process.env.NODE_ENV === 'production'){
-  dbURI = process.env.MONGOLAB_URI;
-};
+// if(process.env.NODE_ENV === 'production'){
+//   dbURI = ;
+// };
 mongoose.connect(dbURI,{
   useMongoClient: true
 });
