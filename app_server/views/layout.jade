@@ -1,5 +1,5 @@
 doctype html
-html
+html(ng-app='loc8rApp')
  head
  meta(charset="utf-8")
  title= title
@@ -14,7 +14,8 @@ body
 
  include ./partials/pageFooter
  
- script(src='/javascripts/angular.min.js')
+ script(src='/angular/angular.min.js')
+ script(src='/angular/loc8rApp.js')
  script(src="/javascripts/jQuery.min.js")
  script(src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js")
  script(src='/javascripts/validation.js')

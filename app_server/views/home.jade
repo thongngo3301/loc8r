@@ -3,21 +3,19 @@ include _includes/shareHTMLfunctions
 
 block content
  .row
-  .col-xs-12.col-sm-8
-   - if(message)
-    .error.alert.alert-danger= message
+  .col-xs-12.col-sm-8(ng-controller="homeCtrl")
+   label(for="filter") Filter results
+   input#filter(type="text", name="filter", ng-model="textFilter") 
+   .error {{message}}
    .row.list-group
-    each location in locations
-     .col.xs-12.list-group-item
+     .col.xs-12.list-group-item(ng-repeat="location in data.locations | filter : textFilter")
       h4
-       a(href='/location/#{location._id}')= location.name
-        small &nbsp;
-       +outputRating(location.rating)
-       span.pull-right.badge.badge-default= location.distance
-      p.address= location.address
+       a(href='/location/{{location._id}}') {{location.name}}
+        small(rating-stars, rating="location.rating")
+       span.pull-right.badge.badge-default {{location.distance | _formatDistance}}
+      p.address {{location.address}}
       p
-       each facility in location.facilities
-        span.label.label-warning= facility
-        | &nbsp;
+        span.label.label-warning.label-facility(ng-repeat="facility in location.facilities")
+        | {{facility}}
   .col-xs-12.col-sm-4
    p.lead Loc8r helps you find places to work when out and about.
