@@ -81,7 +81,8 @@ var renderReviewForm = function(req,res,location){
             title: 'Review ' + location.name,
             strapline: ''
         },
-        error: req.query.err
+        error: req.query.err,
+        url: req.originalUrl
     });
 };
 /*Post method to add new review*/
