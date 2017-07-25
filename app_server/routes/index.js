@@ -8,6 +8,6 @@ router.get("/",homeCtrl.homeList);
 router.get("/location/:locationId",locationInfoCtrl.locationInfo);
 router.get('/location/:locationId/reviews/new',locationInfoCtrl.addReview);
 router.post('/location/:locationId/reviews/new',locationInfoCtrl.doAddReview);
-//router.get("/#/about", ctrlOthers.angularApp);
+router.get("/about", ctrlOthers.angularApp);
 
 module.exports = router;
