@@ -2,14 +2,13 @@ var mongoose = require('mongoose');
 //mongoose.Promise = global.Promise;
 var dbURI = 'mongodb://localhost:27017/loc8r_data';
 //var dbURI = 'mongodb://thongngo3301:14789632@ds155132.mlab.com:55132/loc8r_data';
-// if(process.env.NODE_ENV === 'production'){
-//   dbURI = ;
-// };
+if(process.env.NODE_ENV === 'production'){
+  dbURI = process.env.MONGOLAB_URI;
+};
 mongoose.connect(dbURI,{
   useMongoClient: true
 });
 var homeDB = mongoose.connection;
-
 //var homeDB = mongoose.createConnection(dbURI);
 
 homeDB.on('connected',function(){
@@ -50,3 +49,4 @@ process.on('SIGTERM',function(){
 
 //Get models and schema
 require('./locations.models');
+require('./users.models');

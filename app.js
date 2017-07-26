@@ -1,11 +1,16 @@
+require('dotenv').load();
+
 var express = require("express");
 var path = require('path');
 var bodyParser = require('body-parser');
 var favicon = require('serve-favicon');
-require('./app_api/models/db');
 var uglifyJs = require('uglify-js');
 var fs = require('fs');
 var app = express();
+var passport = require('passport');
+
+require('./app_api/models/db');
+require('./app_api/config/passport');
 
 //views engine set up
 app.set("views",path.join(__dirname,"app_server","views"));
@@ -46,6 +51,7 @@ app.use(bodyParser.urlencoded({ extended : false}));
 //var router = require('./app_server/routes/index');
 //app.use('/', router);
 var routerAPI = require('./app_api/routes/index');
+app.use(passport.initialize());
 app.use('/api',routerAPI);
 
 app.use(function(req, res) {
