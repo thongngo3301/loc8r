@@ -10,7 +10,7 @@
 
 		vm.onSubmit = function () {
 			vm.formError = "";
-			if (!vm.formData.name || !vm.formData.rating || !vm.formData.reviewText) {
+			if (!vm.formData.rating || !vm.formData.reviewText) {
 				return false;
 			}
 			else {
@@ -20,7 +20,6 @@
 
 		vm.doAddReview = function (locationid, formData) {
 			loc8rData.addReviewById(locationid, {
-				author: formData.name,
 				rating: formData.rating,
 				reviewText: formData.reviewText
 			})

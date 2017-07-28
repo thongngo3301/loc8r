@@ -15,14 +15,18 @@ require('./app_api/config/passport');
 //views engine set up
 app.set("views",path.join(__dirname,"app_server","views"));
 app.set("view engine","jade");
-var appClientFiles ={ 
+var appClientFiles = {
     'app.js': fs.readFileSync('app_client/app.js','utf8'),
     'home.controller.js': fs.readFileSync('./app_client/home/home.controller.js','utf8'),
     'about.controller.js': fs.readFileSync('./app_client/about/about.controller.js','utf8'),
     'locationDetail.controller.js': fs.readFileSync('./app_client/locationDetail/locationDetail.controller.js','utf8'),
     'reviewModal.controller.js': fs.readFileSync('./app_client/reviewModal/reviewModal.controller.js','utf8'),
+    'register.controller.js': fs.readFileSync('./app_client/auth/register/register.controller.js','utf8'),
+    'login.controller.js': fs.readFileSync('./app_client/auth/login/login.controller.js','utf8'),
+    'navigation.controller.js': fs.readFileSync('./app_client/common/directives/navigation/navigation.controller.js','utf8'),
     'geolocation.service.js': fs.readFileSync('./app_client/common/services/geolocation.service.js','utf8'),
     'loc8rData.service.js': fs.readFileSync('./app_client/common/services/loc8rData.service.js','utf8'),
+    'authentication.service.js': fs.readFileSync('./app_client/common/services/authentication.service.js','utf8'),
     'formatDistance.filter.js': fs.readFileSync('./app_client/common/filters/formatDistance.filter.js','utf8'),
     'ratingStars.directive.js': fs.readFileSync('./app_client/common/directives/ratingStars/ratingStars.directive.js','utf8'),
     'footerGeneric.directive.js' : fs.readFileSync('./app_client/common/directives/footerGeneric/footerGeneric.directive.js','utf8'),
@@ -67,6 +71,13 @@ app.use(function(req, res, next) {
 });
 
 // error handlers
+// catch unauthorized errors
+app.use(function (err, req, res, next) {
+    if (err.name === "UnauthorizedError") {
+        res.status(401);
+        res.json({"message": err.name + ": " + err.message});
+    }
+});
 
 // development error handler
 // will print stacktrace
