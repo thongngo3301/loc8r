@@ -8,8 +8,8 @@ if(process.env.NODE_ENV === 'production'){
 mongoose.connect(dbURI,{
   useMongoClient: true
 });
-var homeDB = mongoose.connection;
-//var homeDB = mongoose.createConnection(dbURI);
+//var homeDB = mongoose.connection;
+var homeDB = mongoose.createConnection(dbURI);
 
 homeDB.on('connected',function(){
   console.log('mongoose connected to ' + dbURI);
