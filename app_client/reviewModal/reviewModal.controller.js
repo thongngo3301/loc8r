@@ -28,6 +28,7 @@
 				})
 				.error(function (data) {
 					vm.formError = "Your review has not been saved, try again";
+					console.log(data);
 				});
 			return false;
 		};

@@ -17,7 +17,7 @@
 		var addReviewById = function (locationid, data) {
 			return $http.post('/api/locations/' + locationid + '/reviews', data, {
 				headers: {
-					Authorization: 'Bearer'+ authentication.getToken()
+					Authorization: 'Bearer '+ authentication.getToken()
 				}
 			});
 		};

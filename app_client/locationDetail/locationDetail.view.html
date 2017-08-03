@@ -14,7 +14,7 @@
 							</div>
 							<div class="panel-body">
 								<!-- Opening times here -->
-								<p ng-repeat="time in vm.data.location.openingTimes" ng-switch-on="time.closed">
+								<p ng-repeat="time in vm.data.location.openingTime" ng-switch="time.closed">
 									{{ time.days }} :
 									<span class="opening-time" ng-switch-when="true">closed</span>
 									<span class="opening-time" ng-switch-default>{{ time.opening + " - " + time.closing }}</span>
@@ -40,6 +40,7 @@
 							</div>
 							<div class="panel-body">
 								<!-- img or iframe here -->
+								<div id="map" style="height: 300px"></div>
 							</div>
 						</div>
 					</div>
