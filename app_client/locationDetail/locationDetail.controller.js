@@ -33,13 +33,13 @@
 				vm.formError = "All fields are required, please try again";
 				return false;
 			}else{
-				vm.doAddReview(vm.locationId,vm.formData);
+				vm.doAddReview(vm.locationid,vm.formData);
 			}
 		}
 
-		vm.doAddReview = function (locationId,formData) {
+		vm.doAddReview = function (locationid,formData) {
 			
-			loc8rData.addReviewById(locationId,{
+			loc8rData.addReviewById(locationid,{
 				/*author: authentication.currentUser().name,*/
 				rating: formData.rating,
 				reviewText: formData.reviewText,
