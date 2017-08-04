@@ -20,7 +20,7 @@ var appClientFiles = {
     'home.controller.js': fs.readFileSync('./app_client/home/home.controller.js','utf8'),
     'about.controller.js': fs.readFileSync('./app_client/about/about.controller.js','utf8'),
     'locationDetail.controller.js': fs.readFileSync('./app_client/locationDetail/locationDetail.controller.js','utf8'),
-    'reviewModal.controller.js': fs.readFileSync('./app_client/reviewModal/reviewModal.controller.js','utf8'),
+    //'reviewModal.controller.js': fs.readFileSync('./app_client/reviewModal/reviewModal.controller.js','utf8'),
     'register.controller.js': fs.readFileSync('./app_client/auth/register/register.controller.js','utf8'),
     'login.controller.js': fs.readFileSync('./app_client/auth/login/login.controller.js','utf8'),
     'navigation.controller.js': fs.readFileSync('./app_client/common/directives/navigation/navigation.controller.js','utf8'),

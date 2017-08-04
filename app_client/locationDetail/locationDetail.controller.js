@@ -3,8 +3,8 @@
 		.module('loc8rApp')
 		.controller('locationDetailCtrl', locationDetailCtrl);
 
-	locationDetailCtrl.$inject = ['$routeParams', '$location', '$modal', 'loc8rData', 'authentication'];
-	function locationDetailCtrl ($routeParams, $location, $modal, loc8rData, authentication) {
+	locationDetailCtrl.$inject = ['$routeParams', '$location', 'loc8rData', 'authentication'];
+	function locationDetailCtrl ($routeParams, $location, loc8rData, authentication) {
 		var vm = this;
 		vm.locationid = $routeParams.locationid;
 
@@ -26,24 +26,33 @@
 			.error(function (e) {
 				console.log(e);
 			});
-		vm.popupReviewForm = function () {
-			var modalInstance = $modal.open({
-				templateUrl: '/reviewModal/reviewModal.view.html',
-				controller: 'reviewModalCtrl as vm',
-				resolve: {
-					locationData: function () {
-						return {
-							locationid: vm.locationid,
-							locationName: vm.data.location.name
-						};
-					}
-				}
-			});
+		//modal add review controller
+		vm.onSubmit = function () {
+			vm.formError = "";
+			if(/*!vm.formData.name || */!vm.formData.rating || !vm.formData.reviewText){
+				vm.formError = "All fields are required, please try again";
+				return false;
+			}else{
+				vm.doAddReview(vm.locationId,vm.formData);
+			}
+		}
 
-			modalInstance.result.then (function (data) {
-				vm.data.location.reviews.push(data);
-			});
-		};
+		vm.doAddReview = function (locationId,formData) {
+			
+			loc8rData.addReviewById(locationId,{
+				/*author: authentication.currentUser().name,*/
+				rating: formData.rating,
+				reviewText: formData.reviewText,
+			})
+				.success(function (data) {
+					$('#myModal').modal('toggle');
+					vm.data.location.reviews.push(data);
+				})
+				.error(function(data){
+					vm.formError = 'Your review has not saved, try again';
+				})
+				return false;
+		}
 
 		vm.initMap = function (location) {
 			var myLatLng = {lat: location.coordinates[1], lng: location.coordinates[0]};
