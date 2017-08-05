@@ -42,7 +42,7 @@
 			loc8rData.addReviewById(locationid,{
 				/*author: authentication.currentUser().name,*/
 				rating: formData.rating,
-				reviewText: formData.reviewText,
+				reviewText: formData.reviewText
 			})
 				.success(function (data) {
 					$('#myModal').modal('toggle');
